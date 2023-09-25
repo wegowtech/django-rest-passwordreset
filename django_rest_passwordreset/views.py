@@ -178,7 +178,7 @@ class ResetPasswordRequestToken(GenericAPIView):
                     # no token exists, generate a new token
                     token = ResetPasswordToken.objects.create(
                         user=user,
-                        user_agent=request.META.get(HTTP_USER_AGENT_HEADER, ''),
+                        user_agent=request.META.get(HTTP_USER_AGENT_HEADER, '')[:256],
                         ip_address=request.META.get(HTTP_IP_ADDRESS_HEADER, ''),
                     )
                 # send a signal that the password token was created
